@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common';
-import { Get, Param } from '@nestjs/common/decorators';
+import { Get, Param, Post, Body } from '@nestjs/common/decorators';
 import { NumberService } from './number.service';
+import { CreateNumberDto } from './dto/create-number.dto';
 
 @Controller('number')
 export class NumberController {
@@ -14,5 +15,10 @@ export class NumberController {
   @Get(':id')
   getNumberById(@Param('id') id: string) {
     return this.numberService.getOneNumber(id);
+  }
+
+  @Post()
+  create(@Body() createNumber: CreateNumberDto) {
+    return this.numberService.addNumber(createNumber);
   }
 }
