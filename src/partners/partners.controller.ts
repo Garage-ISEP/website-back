@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Delete, Get, Param } from '@nestjs/common';
 import { PartnersService } from './partners.service';
 
 @Controller('partners')
@@ -8,5 +8,15 @@ export class PartnersController {
   @Get()
   getAllPartners() {
     return this.partnersService.getPartners();
+  }
+
+  @Get(':id')
+  getPartnerById(@Param('id') id: string) {
+    return this.partnersService.getOnePartner(id);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.partnersService.deletePartner(id);
   }
 }

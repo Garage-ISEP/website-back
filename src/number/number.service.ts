@@ -17,8 +17,8 @@ export class NumberService {
   }
 
   getOneNumber(id: string) {
-    const number = this.findNumber(id)[0];
-    return { ...number };
+    const number = this.findNumber(id);
+    return number;
   }
 
   findNumber(id: string): Promise<NumberGarage> {

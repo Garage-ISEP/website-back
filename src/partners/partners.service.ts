@@ -15,12 +15,16 @@ export class PartnersService {
 
   getOnePartner(id: string) {
     const partner = this.findPartner(id);
-    return { ...partner };
+    return partner;
   }
 
   findPartner(id: string): Promise<Partners> {
     const partner = this.partnersModel.findById(id);
     if (!partner) throw new NotFoundException('Could not find partner');
     return partner;
+  }
+
+  deletePartner(id: string): Promise<Partners> {
+    return this.partnersModel.findByIdAndRemove(id);
   }
 }
