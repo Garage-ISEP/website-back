@@ -2,6 +2,8 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Partners } from './partners.schema';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
+import { CreatePartnerDto } from './dto/create-partner.dto';
+import { UpdatePartnerDto } from './dto/update-partner.dto';
 
 @Injectable()
 export class PartnersService {
@@ -26,5 +28,14 @@ export class PartnersService {
 
   deletePartner(id: string): Promise<Partners> {
     return this.partnersModel.findByIdAndRemove(id);
+  }
+
+  addPartner(partnerDto: CreatePartnerDto): Promise<Partners> {
+    const newPartner = new this.partnersModel(partnerDto);
+    return newPartner.save();
+  }
+
+  updatePartner(partnerDto: UpdatePartnerDto, id: string) {
+    return this.partnersModel.findByIdAndUpdate(id, partnerDto);
   }
 }
