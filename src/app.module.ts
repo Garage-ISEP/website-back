@@ -7,12 +7,16 @@ import { ConfigModule } from '@nestjs/config';
 import { PartnersController } from './partners/partners.controller';
 import { PartnersService } from './partners/partners.service';
 import { PartnersModule } from './partners/partners.module';
+import { LabsController } from './labs/labs.controller';
+import { LabsService } from './labs/labs.service';
+import { LabsModule } from './labs/labs.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     NumberModule,
     PartnersModule,
+    LabsModule,
     MongooseModule.forRoot(
       'mongodb+srv://' +
         process.env.DB_USERNAME +
