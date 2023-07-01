@@ -11,7 +11,7 @@ export class Lab {
   @Prop({ required: true })
   image: Buffer;
 
-  @Prop({ required: true })
+  @Prop({ required: false })
   description: string;
 }
 
